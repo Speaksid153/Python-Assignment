@@ -1,0 +1,114 @@
+import tkinter as tk
+from tkinter import ttk
+
+
+def analyze_string():
+    """
+    Analyzes the input string and calculates the number of uppercase letters,
+    lowercase letters, spaces, and toggles the case of the string.
+    """
+    input_string = entry.get().strip()  # Get input and remove leading/trailing spaces
+
+    if not input_string:
+        results_label.config(
+            text="Error: Please enter a valid sentence.", fg="red"
+        )
+        return
+
+    # Initialize counters
+    uppercase_count = sum(1 for char in input_string if char.isupper())
+    lowercase_count = sum(1 for char in input_string if char.islower())
+    space_count = sum(1 for char in input_string if char.isspace())
+    
+    # Toggle case
+    toggled_string = input_string.swapcase()
+
+    # Display results on the main page
+    results_label.config(
+        text=(
+            f"Original String: {input_string}\n\n"
+            f"Analysis:\n"
+            f"Uppercase Letters: {uppercase_count}\n"
+            f"Lowercase Letters: {lowercase_count}\n"
+            f"Spaces: {space_count}\n\n"
+            f"Toggled Case String: {toggled_string}"
+        ),
+        fg="white",
+    )
+
+
+# Create the main application window
+root = tk.Tk()
+root.title("Dark Theme String Analyzer")
+root.geometry("600x400")
+root.resizable(False, False)
+
+# Dark theme colors
+bg_color = "#1e1e1e"
+fg_color = "#ffffff"
+button_color = "#444444"
+highlight_color = "#008080"
+
+root.configure(bg=bg_color)
+
+# Title label
+title_label = tk.Label(
+    root,
+    text="Dark Theme String Analyzer",
+    font=("Arial", 18, "bold"),
+    fg=highlight_color,
+    bg=bg_color,
+)
+title_label.pack(pady=10)
+
+# Instruction label
+instruction_label = tk.Label(
+    root,
+    text="Enter a sentence below to analyze the string:",
+    font=("Arial", 12),
+    fg=fg_color,
+    bg=bg_color,
+)
+instruction_label.pack(pady=5)
+
+# Input field
+entry = ttk.Entry(root, font=("Arial", 12), width=50)
+entry.pack(pady=10)
+
+# Analyze button
+analyze_button = tk.Button(
+    root,
+    text="Analyze String",
+    font=("Arial", 12, "bold"),
+    bg=button_color,
+    fg=fg_color,
+    activebackground=highlight_color,
+    activeforeground=fg_color,
+    width=20,
+    command=analyze_string,
+)
+analyze_button.pack(pady=15)
+
+# Results display label
+results_label = tk.Label(
+    root,
+    text="",
+    font=("Arial", 12),
+    fg=fg_color,
+    bg=bg_color,
+    justify="left",
+)
+results_label.pack(pady=10)
+
+# Footer
+footer_label = tk.Label(
+    root,
+    text="String Analyzer © 2025 | Developed by YourName",
+    font=("Arial", 8),
+    fg="#666666",
+    bg=bg_color,
+)
+footer_label.pack(side=tk.BOTTOM, pady=5)
+
+# Run the application
+root.mainloop()
