@@ -103,7 +103,7 @@ results_label.pack(pady=10)
 # Footer
 footer_label = tk.Label(
     root,
-    text="String Analyzer © 2025 | Developed by YourName",
+    text="String Analyzer",
     font=("Arial", 8),
     fg="#666666",
     bg=bg_color,
